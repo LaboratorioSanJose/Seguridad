@@ -1,0 +1,222 @@
+/* styles.css - Tema Laboratorio San José */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* Header de marca */
+.brand-header {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    padding: 25px 20px;
+    text-align: center;
+}
+
+.brand-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 10px 0 5px 0;
+    color: white;
+}
+
+.brand-subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Encabezado de login */
+.login-header {
+    background: #e74c3c;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.login-header h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.login-header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Formulario */
+.login-form {
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3498db;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #999;
+}
+
+/* Botón */
+.btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}
+
+.btn:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Loading */
+.loading {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+}
+
+.loading-spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #e74c3c;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+
+.loading p {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin: 0;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Nota de seguridad */
+.security-notice {
+    text-align: center;
+    margin: 25px 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 6px;
+    border-left: 4px solid #3498db;
+}
+
+.security-notice p {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.security-notice strong {
+    color: #2c3e50;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    background: #f8f9fa;
+}
+
+.footer p {
+    font-size: 11px;
+    color: #7f8c8d;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+    
+    .login-container {
+        margin: 0;
+        border-radius: 0;
+    }
+    
+    .login-form {
+        padding: 20px;
+    }
+    
+    .brand-title {
+        font-size: 24px;
+    }
+    
+    .login-header {
+        padding: 15px;
+    }
+    
+    .login-header h2 {
+        font-size: 20px;
+    }
+}

